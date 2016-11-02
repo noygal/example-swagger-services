@@ -1,0 +1,17 @@
+{
+  "name": "endpoints",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape src/**/*.tests.js",
+    "dev": "watch \"npm test\" src"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nedb": "^1.8.0",
+    "tape": "^4.6.2",
+    "watch": "^1.0.1"
+  }
+}

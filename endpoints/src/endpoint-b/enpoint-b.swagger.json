@@ -1,0 +1,73 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Endpoint-a",
+        "description": "Endpoint-a example",
+        "version": "1.0.0"
+    },
+    "schemes": [
+        "https"
+    ],
+    "consumes": [
+    "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/exampleB/{paramA}": {
+            "x-swagger-router-controller": "controllerB",
+            "get": {
+                "summary": "Summary",
+                "description": "description",
+                "operationId": "getExample",
+                "parameters": [
+                    {
+                        "name": "paramA",
+                        "in": "path",
+                        "description": "description",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "paramB",
+                        "in": "query",
+                        "description": "description",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "description",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/ExampleB"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "ExampleB": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "number"
+                }
+            }
+        }
+    }
+}
