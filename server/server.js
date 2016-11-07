@@ -3,27 +3,24 @@ const express = require('express')
 
 // pepper packages
 const settings = require('settings').default
+const endpoints = require('endpoints')
 const core = require('core')
 
 let app = express()
 
 let swaggerObject = core.utils.swagger.merge(
-  [
-    require('./node_modules/endpoints/src/endpoint-a/enpoint-a.swagger'),
-    require('./node_modules/endpoints/src/endpoint-b/enpoint-b.swagger')
-  ], {
+  endpoints.example.swagger, {
     'title': 'Example Server',
     'description': 'description',
     'version': '1.0.0'
   }, '/api', `${settings.host}:${settings.port}`, ['http']
 )
 
-let controllerObject = Object.assign({}, 
+let controllerObject = endpoints.example.mocks.map(controller => controller.create())
+  .reduce((prev, curr) => Object.assign(prev, curr), {})
   // require('./node_modules/endpoints/src/endpoint-a/enpoint-a.controller').create(db),
   // require('./node_modules/endpoints/src/endpoint-b/enpoint-b.controller').create(db)
-  require('./node_modules/endpoints/src/endpoint-a/enpoint-a.mock').create(),
-  require('./node_modules/endpoints/src/endpoint-b/enpoint-b.mock').create()
-)
+
 console.log(swaggerObject)
 console.log(controllerObject)
 // app.use(core.middleware.auth.create(db))
